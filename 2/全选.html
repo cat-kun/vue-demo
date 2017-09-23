@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .item{
+            height: 30px;
+            display: block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <p><input type="checkbox" name="">全选</p>
+
+    <label class="item" v-for="item in list" @click="change(item)">
+        <input type="checkbox" name="" >
+        <span class="text">{{ item.text }}</span>
+    </label>
+    
+</div>
+<script src="vue.js"></script>
+<script type="text/javascript">
+    let list = [
+        {
+            id: 1,
+            text: 1,
+            isChecked: false
+        },
+        {
+            id: 2,
+            text: 2,
+            isChecked: false
+        },
+        {
+            id: 3,
+            text: 3,
+            isChecked: false
+        },
+        {
+            id: 4,
+            text: 4,
+            isChecked: false
+        }
+    ];
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            list: list,
+            isChecked: true
+        },
+        methods: {
+            change (item){
+                console.log(item.isChecked);
+            }
+        }
+    });    
+
+</script>
+</body>
+</html>

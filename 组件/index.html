@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<div id="app">
+    <!-- <div class="select-container">
+        <p>请选择</p>
+        <ul class="list">
+            <li>12434</li>
+        </ul>
+    </div> -->
+    <custom-select custom-value="请选择选项"></custom-select>
+    <custom-select custom-value="123"></custom-select>
+</div>
+<script src="vue.js"></script>
+<script type="text/javascript">
+    Vue.component('custom-select', {
+        props: ['customValue'],
+        template: `
+            <div class="select-container">
+                <p>{{customValue}}</p>
+                <ul class="list">
+                    <li>12434</li>
+                </ul>
+            </div>
+        `
+    });
+    new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>

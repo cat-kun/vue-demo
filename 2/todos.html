@@ -26,9 +26,9 @@
             <li>
                 {{noCheckLen}}个任务未完成</li>
             <li class="action">
-                <a class="active" href="#all">所有任务</a>
-                <a href="#unfinshed">未完成的任务</a>
-                <a href="#finshed">完成的任务</a>
+                <a :class="{active: visibility === 'all'}" href="#all">所有任务</a>
+                <a :class="{active: visibility === 'unfinshed'}" href="#unfinshed">未完成的任务</a>
+                <a :class="{active: visibility === 'finshed'}" href="#finshed">完成的任务</a>
             </li>
         </ul>
         <h3 class="big-title">任务列表：</h3>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <style type="text/css">
+
+        .box{
+            float: left;
+            margin-right: 50px;
+        }
+        .select-container{
+            height: 40px;
+        }
+        .select-container button{
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            text-indent: 20px;
+            border: 1px solid #ccc;
+        }
+        .value{
+            width: 80px;
+            display: inline-block;
+        }
+        .select-container li{
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .select-container li:hover{
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- <div class="select-container">
+        <p>请选择</p>
+        <ul class="list">
+            <li>12434</li>
+        </ul>
+    </div> -->
+    <div class="box">
+        <custom-select custom-value="456" :list="list1"></custom-select>
+    </div>
+    <div class="box">
+        <custom-select custom-value="123" :list="list2"></custom-select>
+    </div>    
+</div>
+<script src="vue.js"></script>
+<script type="text/javascript">
+    /*
+        custom-select 父组件
+        custom-list 子组件
+    */
+    Vue.component('custom-select', {
+        data: function (){
+            return {
+                selectShow: false,
+                value: ''
+            }
+        },
+        props: ['customValue','list'],
+        template: `
+            <div class="select-container">
+                <span class="value">{{ value }}</span>
+                <button @click="selectShow = !selectShow">{{customValue}}</button>
+                <custom-list v-show="selectShow" :item="list" v-on:receive="selectHandle"></custom-list>
+            </div>
+        `,
+        methods: {
+            selectHandle(val){
+                this.value = val;
+                this.selectShow = !this.selectShow
+            }
+        }
+    });
+    Vue.component('custom-list', {
+        props: ['item'],
+        template: `
+            <ul class="list">
+                <li v-for="option of item" @click="selectHandle(option)">{{ option }}</li>
+            </ul>
+        `,
+        methods: {
+            selectHandle: function (option){
+                console.log(option)
+                this.$emit('receive',option);
+            }
+        }
+    });
+    new Vue({
+        el: '#app',
+        data: {
+            list1: ['北京','上海','杭州'],
+            list2: ['2017-09-10','2017-09-11','2017-09-12']
+        }
+    });
+</script>
+</body>
+</html>

@@ -114,12 +114,19 @@
 </head>
 <body>
 <div id="app">
+    <template>
+        <m-alert 
+        type="success" title="成功啦" 
+        :closeable="true"
+         @close-click="close" 
+         @click="showFn"               
+     ></m-alert>
+    </template>
     <m-alert 
         type="success" title="成功啦" 
         :closeable="true"
          @close-click="close" 
-         @click="showFn"
-               
+         @click="showFn"               
      ></m-alert>
 
     <m-alert type="info" :show-icon="false"></m-alert>
@@ -193,7 +200,15 @@
     new Vue({
         el: '#app',
         data: {
-            show: false
+            // show: false
+            show: [
+                {
+                    click: true
+                },
+                {
+                    click: true
+                }
+            ]
         },
         methods: {
             close (){
@@ -204,7 +219,7 @@
         },
         computed: {
             showFn (){
-                return this.show = !this.show;
+                this.show = !this.show;
             }
         }
     });
